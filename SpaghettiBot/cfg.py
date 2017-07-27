@@ -25,7 +25,10 @@
 os.chdir(os.path.join(os.path.abspath(__file__), os.path.normpath("/dist/CONFIG/")))
 """
 import os
+import shutil
 
+shutil.rmtree(os.path.abspath("CONFIG"), True)
+shutil.copytree(os.path.abspath("../../CONFIG"), os.path.abspath("CONFIG"))
 
 os.chdir(os.path.abspath("CONFIG"))
 print("{}{}".format("Reading configuration files from ", os.path.abspath(os.curdir)))
