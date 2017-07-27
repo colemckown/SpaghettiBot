@@ -1,0 +1,40 @@
+As long as I remember to update it, this list can also be found at https://pastebin.com/0LrYJCJS
+
+
+SPAGHETTIBOT COMMANDS:
+=================================================================================
+!check
+Check if SpaghettiBot is running
+
+!imgay
+Tell everyone you're gay (hopefully they won't notice though)
+
+!discord
+Get the link to the discord server
+
+!play
+Join the queue
+
+!position
+Check your position in the queue
+
+!who
+See who is currently challenging
+
+!help
+Come here
+
+!cancel
+Leave the queue
+
+!total
+Check how many are in the queue
+
+
+MOD COMMANDS:
+=================================================================================
+!next
+Finish with current challenger and move to next one in queue
+
+!clear
+Clear the queue
