@@ -1,0 +1,30 @@
+
+$MODS	# channel mods
+mod1
+mod2
+mod3
+$ENDMODS
+
+$PATT	# ban patterns (default: timeout 600)
+$ENDPATT
+
+$COMM	# universal commands
+!check
+!imgay
+!discord
+!play
+!whonext
+!position
+!who
+!help
+!cancel
+!total
+$ENDCOMM
+
+$MDCM	# mod only commands (username must be in MODS list in order to execute)
+!next
+!clear
+$ENDMDCM
+
+$MESS	# messages cycled through upon every ping
+$ENDMESS

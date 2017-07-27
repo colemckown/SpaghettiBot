@@ -52,8 +52,7 @@ def discord(sock):
 
 # slaps people on the wrist when they try to do things they're not allowed to do
 def notPermitted(sock, user):
-    chat(sock, "{}{}".format(cfg.NTPR, user))
-    timeout(sock, user, 10)  
+    chat(sock, "{}{}".format(cfg.NTPR, user)) 
 
 # sends a list of messages (defined in cfg.MESS) to be sent upon every IRC server PING/PONG
 def periodicMessage(sock, counter):
@@ -229,10 +228,14 @@ while True:
                     break
         for command in cfg.MDCM:
             if message.startswith(command):
-                if command == "!next":
-                    challenger = queueNext(s, f, challenger)
-                    break
-                elif command == "!clear":
-                    challenger = queueClear(s, f)
-                    break
+                if username in cfg.MODS:
+                    if command == "!next":
+                        challenger = queueNext(s, f, challenger)
+                        break
+                    elif command == "!clear":
+                        challenger = queueClear(s, f)
+                        break
+                else:
+                    notPermitted(s, username)
+
     time.sleep(1.0 / cfg.RATE)

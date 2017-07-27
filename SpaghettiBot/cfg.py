@@ -1,40 +1,101 @@
-# cfg.py
-HOST = "irc.twitch.tv"              			# the Twitch IRC server
-PORT = 6667                         			# always use port 6667!
-NICK = "bot_nickname"            				# your Twitch username, lowercase
-PASS = "oauth:xxxxxxxxxxxxxxxxxxxxxxxxxxxx" 	# your Twitch OAuth token
-CHAN = "#channel"                 				# the channel you want to join
-RATE = (20.0/30.0)								# messages per second
+#cfg.py
 
+s = open("systemconfig.txt", "r")
+systemSettings = s.readlines()
+s.close()
 
-DISC = "https://discord.gg/xxxx"				# discord link
-DISM = "Discord: "								# first part of message before discord link
-NTPR = "That command isn't for you, "			# message displayed when someone tries to execute a command that they shouldn't be
-QUEF = "queue.txt"								# filename for queue text file
-QEMP = "The queue is empty."					# message displayed when queueNext() is called and queue is empty
-GGTX = "GG's, "									# message displayed when done with current challenger (ends with "<username>")
-QNXT = " is up next."							# message displayed when next in queue is ready (starts with "<username>")
-PTNC = " is already in queue. Be patient!"		# message when trying to enter queue while already in (starts with "<user>")
-ADDM = " has been added to the queue!"			# message when user successfully added to queue
-POS1 = " challengers are ahead of "				# message to show user's position in queue (starts with "<number in front of user>")
-POS2 = " in queue."								# finishes above (after "<username>")
-NOTQ = " is not in queue."						# message to show when user checks position in queue but is not in queue (starts with "<user>")
-WHMS = "<name> is playing with "				# message to show current challenger (before "<challenger>")
-NOCH = "<name> doesn't have a challenger yet. Type !play to be the first."
-HELP = "Go to https://pastebin.com/0LrYJCJS to see list of commands."									# message to link to list of commands
-LEFT = " has left the queue."					# message to show when user leaves queue (starts with "<username>")
-QCLR = "Queue cleared."							# message displayed when queue is cleared
-WHNX = " is on deck."							# message to show who is next in queue (starts with "<username>")
-QTOT = " challengers are in queue."				# message to show how many are in queue (starts with "<username>")
-QEMP = "The queue is empty. Type !play to join!"# message to show when queue is empty
+for line in systemSettings:
+	if line.startswith("$"):
+		setting = systemSettings[systemSettings.index(line) + 1].rstrip("\n")
+		if line.startswith("$HOST"):
+			HOST = setting
+		elif line.startswith("$PORT"):
+			PORT = int(setting)
+		elif line.startswith("$NICK"):
+			NICK = setting
+		elif line.startswith("$PASS"):
+			PASS = setting
+		elif line.startswith("$CHAN"):
+			CHAN = setting
+		elif line.startswith("$RATE"):
+			RATE = float(setting)
 
-MODS = [
-	]											# list of channel mods
-PATT = [
-	]											# ban patterns
-COMM = ["!check", "!imgay", "!discord", "!play", "!whonext", "!position", "!who", "!help", "!cancel", "!total"
-	]											# commands
-MDCM = ["!next", "!clear"
-	]
-MESS = [
-    ]											# messages to be sent periodically with every PING
+m = open("messageconfig.txt", "r")
+messages = m.readlines()
+m.close()
+
+for line in messages:
+	if line.startswith("$"):
+		message = messages[messages.index(line) + 1].rstrip("\n")
+		# god save us all
+		if line.startswith("$DISC"):
+			DISC = message
+		elif line.startswith("$DISM"):
+			DISM = message
+		elif line.startswith("$NTPR"):
+			NTPR = message
+		elif line.startswith("$QUEF"):
+			QUEF = message
+		elif line.startswith("$QEMP"):
+			QEMP = message
+		elif line.startswith("$GGTX"):
+			GGTX = message
+		elif line.startswith("$QNXT"):
+			QNXT = message
+		elif line.startswith("$PTNC"):
+			PTNC = message
+		elif line.startswith("$ADDM"):
+			ADDM = message
+		elif line.startswith("$POS1"):
+			POS1 = message
+		elif line.startswith("$POS2"):
+			POS2 = message
+		elif line.startswith("$NOTQ"):
+			NOTQ = message
+		elif line.startswith("$WHMS"):
+			WHMS = message
+		elif line.startswith("$NOCH"):
+			NOCH = message
+		elif line.startswith("$HELP"):
+			HELP = message
+		elif line.startswith("$LEFT"):
+			LEFT = message
+		elif line.startswith("$QCLR"):
+			QCLR = message
+		elif line.startswith("$WHNX"):
+			WHNX = message
+		elif line.startswith("$QTOT"):
+			QTOT = message
+		elif line.startswith("$QEMP"):
+			QEMP = message
+
+MODS = []
+PATT = []
+COMM = []
+MDCM = []
+MESS = []
+
+l = open("listconfig.txt", "r")
+lists = l.readlines()
+l.close()
+
+for line in lists:
+	lists[lists.index(line)] = lists[lists.index(line)].rstrip()
+
+for line in lists:
+	if line.startswith("$"):
+		if line.startswith("$MODS"):
+			for mod in range(lists.index(line) + 1, lists.index("$ENDMODS")):
+				MODS.append(lists[mod])
+		elif line.startswith("$PATT"):
+			for pattern in range(lists.index(line) + 1, lists.index("$ENDPATT")):
+				PATT.append(lists[pattern])
+		elif line.startswith("$COMM"):
+			for command in range(lists.index(line) + 1, lists.index("$ENDCOMM")):
+				COMM.append(lists[command])
+		elif line.startswith("$MDCM"):
+			for modcomm in range(lists.index(line) + 1, lists.index("$ENDMDCM")):
+				MDCM.append(lists[modcomm])
+		elif line.startswith("$MESS"):
+			for message in range(lists.index(line) + 1, lists.index("$ENDMESS")):
+				MESS.append(lists[message])
