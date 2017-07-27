@@ -1,7 +1,26 @@
 # bot.py
 
-import cfg
+### Copyright 2017 Cole McKown
+
+"""
+    This file is part of SpaghettiBot.
+
+    SpaghettiBot is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    SpaghettiBot is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Spaghettibot.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 import os
+import cfg
 import socket
 import re
 import time
@@ -16,7 +35,7 @@ def chat(sock, msg):
     msg  -- the message to be sent
     """
     sock.send("PRIVMSG {} :{}\r\n".format(cfg.CHAN, msg))
-    print(cfg.NICK + ": " + msg)
+    print("\n" + cfg.NICK + ": " + msg + "\n")
 
 def ban(sock, user):
     """
@@ -167,14 +186,13 @@ s.send("PASS {}\r\n".format(cfg.PASS).encode("utf-8"))
 s.send("NICK {}\r\n".format(cfg.NICK).encode("utf-8"))
 s.send("JOIN {}\r\n".format(cfg.CHAN).encode("utf-8"))
 
-
 chat(s, "{} is starting up.".format(cfg.NICK))
+
 f = cfg.QUEF
 open(f, "w").close()
+
 challenger = "nobody"
 messageCounter = 0
-
-
 CHAT_MSG=re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :")
 
 while True:

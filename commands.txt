@@ -1,4 +1,5 @@
 As long as I remember to update it, this list can also be found at https://pastebin.com/0LrYJCJS
+(This file has no actual effect on any settings; it is solely to document the commands)
 
 
 SPAGHETTIBOT COMMANDS:
