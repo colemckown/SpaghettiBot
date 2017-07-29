@@ -57,3 +57,6 @@ $QTOT	# message displayed to show total number in queue (after <number in queue>
 
 $QEMP	# message displayed when queue is queeried but is empty
 The queue is empty. Type !play to join.
+
+$KILL	# message displayed when you brutally murder the bot
+ shutting down.

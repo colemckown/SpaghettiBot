@@ -28,7 +28,7 @@ import os
 import shutil
 
 shutil.rmtree(os.path.abspath("CONFIG"), True)
-shutil.copytree(os.path.abspath("../../CONFIG"), os.path.abspath("CONFIG"))
+shutil.copytree(os.path.abspath("../CONFIG"), os.path.abspath("CONFIG"))
 
 os.chdir(os.path.abspath("CONFIG"))
 print("{}{}".format("Reading configuration files from ", os.path.abspath(os.curdir)))
@@ -101,6 +101,8 @@ for line in messages:
 			QTOT = message
 		elif line.startswith("$QEMP"):
 			QEMP = message
+		elif line.startswith("$KILL"):
+			KILL = message
 
 MODS = []
 PATT = []

@@ -24,6 +24,7 @@ import cfg
 import socket
 import re
 import time
+import sys
 
 # network functions go here
 
@@ -176,6 +177,9 @@ def total(sock, file):
 def help(sock):
     chat(sock, "{}".format(cfg.HELP))
 
+def kill(sock):
+	chat(sock, "{}{}".format(cfg.NICK, cfg.KILL))
+	sys.exit()
 
 # ugly system/networking stuff... there has to be a better way to do this but idk man
 
@@ -253,6 +257,8 @@ while True:
                     elif command == "!clear":
                         challenger = queueClear(s, f)
                         break
+                    elif command == "!kill":
+                    	kill(s)
                 else:
                     notPermitted(s, username)
 
