@@ -5,13 +5,13 @@ $PORT	# don't change this
 6667
 
 $NICK   # nickname of the bot account
-bot_nickname
+rspaghettibot
 
 $PASS   # authentication token of bot account
-oauth:xxxxxxxxxxxxxxxxxxxxx
+oauth:qafdrwlofncp16whn6cd1ycb2nup5p
 
 $CHAN   # channel to connect to
-#channel
+#robertspaghetti
 
 $RATE   # maximum message send rate (msgs per seconds) (make sure numbers have decimals; even if they are .0)
 0.66

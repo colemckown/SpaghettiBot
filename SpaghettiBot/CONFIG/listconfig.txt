@@ -24,6 +24,7 @@ $ENDCOMM
 $MDCM	# mod only commands (username must be in MODS list in order to execute)
 !next
 !clear
+!kill
 $ENDMDCM
 
 $MESS	# messages cycled through upon every ping
