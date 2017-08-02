@@ -174,6 +174,9 @@ def total(sock, file):
     else:
         queueEmpty(sock)
 
+def bracket(sock):
+	chat("{}{}".format(cfg.BRMS, cfg.BRCK))
+
 def help(sock):
     chat(sock, "{}".format(cfg.HELP))
 
@@ -197,7 +200,8 @@ open(f, "w").close()
 
 challenger = "nobody"
 messageCounter = 0
-CHAT_MSG=re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :")
+CHAT_MSG = re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :")
+
 
 while True:
     response = s.recv(4096).decode("utf-8")
@@ -212,6 +216,7 @@ while True:
         username = re.search(r"\w+", response).group(0) # return the entire match
         message = CHAT_MSG.sub("", response)
         print(username + ": " + message)
+        
         for pattern in cfg.PATT:
             if re.match(pattern, message):
                 timeout(s, username)
@@ -248,6 +253,9 @@ while True:
                 elif command == "!total":
                     total(s, f)
                     break
+                elif command == "!bracket":
+                	bracket(s)
+                	break
         for command in cfg.MDCM:
             if message.startswith(command):
                 if username in cfg.MODS:
@@ -259,7 +267,9 @@ while True:
                         break
                     elif command == "!kill":
                     	kill(s)
+                    	break
                 else:
                     notPermitted(s, username)
+                    break
 
     time.sleep(1.0 / cfg.RATE)

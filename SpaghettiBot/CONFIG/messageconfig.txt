@@ -4,6 +4,12 @@ https://discord.gg/xxxx
 $DISM	# first part of message to display discord link (right before DISC)
 Discord: 
 
+$BRCK  	# link to bracket
+challonge.com/xxxx
+
+$BRMS	# first part of message to display bracket link (right before BRCK)
+Bracket: 
+
 $NTPR	# message displayed when someone attempts to execute a command for which they lack permission (before <username>)
 That command isn't for you, 
 

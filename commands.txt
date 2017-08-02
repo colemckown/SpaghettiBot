@@ -31,6 +31,9 @@ Leave the queue
 !total
 Check how many are in the queue
 
+!bracket
+Get the link to tournament bracket
+
 
 MOD COMMANDS:
 =================================================================================
@@ -39,3 +42,6 @@ Finish with current challenger and move to next one in queue
 
 !clear
 Clear the queue
+
+!kill
+End SpaghettiBot's poor life :(
